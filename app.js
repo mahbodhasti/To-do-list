@@ -3,7 +3,9 @@ const https = require('https');
 const bodyParser = require("body-parser");
 const mongoose =require("mongoose");
 const date = require(__dirname + '/date.js');
+require('dotenv').config()
 // mongo "mongodb+srv://cluster0.autl6q2.mongodb.net/" --username lordloss
+
 const app = express();
 
 // console.log(date())
@@ -13,7 +15,7 @@ app.use(express.urlencoded({extended:true}))
 
 app.use(express.static("public"))
 
-mongoose.connect('mongodb+srv://lordloss:MjyJggCFCBIYFIDe@cluster0.autl6q2.mongodb.net/todolistDB',{useNewUrlParser:true})
+mongoose.connect(process.env.MongoConnect,{useNewUrlParser:true})
   .then(() => console.log('Connected!'));
 
 const itemsSchema ={
